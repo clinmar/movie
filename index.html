@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Hero & Ads Frame</title>
+    <style>
+        /* Basic reset for margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            background: url('logo.avif') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero-section .cta-button {
+            padding: 15px 30px;
+            background-color: #ff6347;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hero-section .cta-button:hover {
+            background-color: #e53e2f;
+        }
+
+        /* Container for the iframe (ads frame) */
+        .iframe-container {
+            width: 80%;
+            height: 80%;
+            border: 5px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        /* Styling for the iframe */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: opacity 1s ease-in-out; /* Smooth fade effect */
+        }
+
+        /* Hide iframe initially until it loads the URL */
+        .hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Movies</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section for Movie -->
+    <div class="hero-section">
+        <div>
+            <h1>Awesome Movie Title</h1>
+            <p>Experience the thrill of this incredible movie.</p>
+            <button class="cta-button">Watch Now</button>
+        </div>
+    </div>
+
+    <!-- Ads Frame (Iframe) -->
+    <div class="iframe-container">
+        <iframe id="iframe" class="hidden" title="Frame Content"></iframe>
+    </div>
+
+    <script>
+        // Array of URLs to be displayed in the iframe
+        const urls = [
+            "https://www.profitablecpmrate.com/biqe7vfv?key=9cd31273ef2f7be2cd0f684f2ac2b71c",
+            "https://www.profitablecpmrate.com/spdwnrrm?key=233b4aba939fc4532b8b3e0cf3406ebb",
+            "https://www.profitablecpmrate.com/xpz5t8nmu?key=d60f38a42ae46962157ebde993548434",
+            "https://www.profitablecpmrate.com/tsfc0npw9?key=a60d9d879df3ba3d9c679a961545a146",
+            "https://www.profitablecpmrate.com/dps82utz?key=171ba5121fe0290ff8e25f54b9f2957c"
+        ];
+
+        const iframe = document.getElementById("iframe");
+
+        let currentIndex = 0; // Keep track of the current URL index
+
+        // Function to load the next URL in the sequence
+        function loadNextURL() {
+            // Hide the iframe before changing the URL
+            iframe.classList.add("hidden");
+
+            // Set the iframe src to the next URL in the array
+            iframe.src = urls[currentIndex];
+
+            // After 1 second (to allow fade-out effect), show the iframe again
+            setTimeout(() => {
+                iframe.classList.remove("hidden");
+            }, 1000);
+
+            // Update the index for the next URL (looping back to 0 when we reach the end)
+            currentIndex = (currentIndex + 1) % urls.length;
+        }
+
+        // Initial load
+        loadNextURL();
+
+        // Change the URL every 5 seconds
+        setInterval(loadNextURL, 5000);
+    </script>
+
+</body>
+</html>
